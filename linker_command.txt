@@ -1,0 +1,41 @@
+This is not a make file ;)  But, it gives the information necessary
+to compile wsjt.dll, or, potentially, wsjt.so or wsjt.dylib depending
+upon your platform.  It has NOT been tested under Linux, MacOS X or
+any other OS beyond Win XP SP3 yet.  It should work on others, but
+I've yet to try.
+
+Also... this is setup to work with MinGW on Windows... I've removed
+some conditional compile directives that would come into play using
+Compaq Visual Fortran so this will fail miserably if compiled with CVF.
+
+The following lines create the object files that will be linked to
+wsjt.dll for Windows OS.
+
+
+del *.o
+g95 -O2 -c avesp2.f blanker.f bzap.f db.f decode65.f deg2grid.f demod64a.f extract.f fil651.f fil652.f fil653.f flat1.f flat2.f flatten.f four2a.f ftpeak65.f gen65.f getpfx1.f getpfx2.f getsnr.f graycode.f grid2deg.f grid2k.f indexx.f interleave63.f k2grid.f limit.f lpf1.f nchar.f packcall.f packdxcc.f packgrid.f packmsg.f packtext.f pctile.f peakup.f pix2d.f ps.f set.f setup65.f short65.f slope.f smooth.f spec2d65.f symsync65.f sync65.f unpackcall.f unpackgrid.f unpackmsg.f unpacktext.f wsjt1.f wsjt65.f xcor.f xfft.f sort.f ssort.f chkhist.f version.f wisdom.f cqz65.f cqz4.f msync65.f sync24.f xcor24.f ps24.f decode24.f msync24.f genmet.f interleave24.f gen24.f entail.f morse.f gencwid.f
+gcc -O2 -c igray.c init_rs.c encode_rs.c decode_rs.c wrapkarn.c cutil.c ptt.c tab.c fano.c
+gcc -shared -mrtd -o jt65.dll cutil.o wisdom.o nchar.o grid2deg.o packmsg.o packtext.o packcall.o packgrid.o unpackmsg.o unpacktext.o unpackcall.o unpackgrid.o deg2grid.o packdxcc.o getpfx1.o getpfx2.o k2grid.o grid2k.o interleave63.o graycode.o set.o igray.o init_rs.o encode_rs.o decode_rs.o setup65.o wrapkarn.o entail.o gen65.o gen24.o ps.o sort.o ssort.o pctile.o db.o flatten.o xfft.o four2a.o avesp2.o blanker.o bzap.o getsnr.o short65.o indexx.o chkhist.o demod64a.o peakup.o symsync65.o extract.o fil651.o fil652.o fil653.o ftpeak65.o spec2d65.o decode65.o decode24.o slope.o xcor.o flat1.o smooth.o limit.o sync65.o xcor24.o ps24.o sync24.o msync65.o msync24.o interleave24.o tab.o fano.o genmet.o morse.o gencwid.o wsjt65.o cqz65.o cqz4.o lpf1.o wsjt1.o version.o ptt.o flat2.o \mingw\lib\gcc-lib\i686-pc-mingw32\4.1.2\libf95.a libfftw3f.dll.a
+del *.o
+
+V4
+
+del *.o
+g95 -O2 -c avesp2.f blanker.f bzap.f db.f decode65.f deg2grid.f demod64a.f extract.f fil651.f fil652.f fil653.f flat1.f flat2.f flatten.f four2a.f ftpeak65.f gen65.f getpfx1.f getpfx2.f getsnr.f graycode.f grid2deg.f grid2k.f indexx.f interleave63.f k2grid.f limit.f lpf1.f nchar.f packcall.f packdxcc.f packgrid.f packmsg.f packtext.f pctile.f peakup.f pix2d.f ps.f set.f setup65.f short65.f slope.f smooth.f spec2d65.f symsync65.f sync65.f unpackcall.f unpackgrid.f unpackmsg.f unpacktext.f wsjt1.f wsjt65.f xcor.f xfft.f sort.f ssort.f chkhist.f version.f wisdom.f cqz65.f cqz4.f msync65.f sync24.f xcor24.f ps24.f decode24.f msync24.f genmet.f interleave24.f gen24.f entail.f morse.f gencwid.f g65.f strlen.f
+gcc -O2 -c igray.c init_rs.c encode_rs.c decode_rs.c wrapkarn.c cutil.c ptt.c tab.c fano.c
+gcc -shared -mrtd -o jt65.dll cutil.o wisdom.o nchar.o grid2deg.o packmsg.o packtext.o packcall.o packgrid.o unpackmsg.o unpacktext.o unpackcall.o unpackgrid.o deg2grid.o packdxcc.o getpfx1.o getpfx2.o k2grid.o grid2k.o interleave63.o graycode.o set.o igray.o init_rs.o encode_rs.o decode_rs.o setup65.o wrapkarn.o entail.o gen65.o gen24.o ps.o sort.o ssort.o pctile.o db.o flatten.o xfft.o four2a.o avesp2.o blanker.o bzap.o getsnr.o short65.o indexx.o chkhist.o demod64a.o peakup.o symsync65.o extract.o fil651.o fil652.o fil653.o ftpeak65.o spec2d65.o decode65.o decode24.o slope.o xcor.o flat1.o smooth.o limit.o sync65.o xcor24.o ps24.o sync24.o msync65.o msync24.o interleave24.o tab.o fano.o genmet.o morse.o gencwid.o wsjt65.o cqz65.o cqz4.o lpf1.o wsjt1.o version.o ptt.o flat2.o g65.o strlen.o \mingw\lib\gcc-lib\i686-pc-mingw32\4.1.2\libf95.a libfftw3f.dll.a
+del *.o
+
+Note:  libfftw3f.a can be found in the wsjt source tree.  wsjt.dll will need to be placed in same directory as
+       executable for Windows.  You will also need libfftw3f.dll and portaudio_x86.dll in executable's directory.
+
+-----
+Linux library build commands.
+
+gfortran -O2 -fpic -c avesp2.f blanker.f bzap.f db.f decode65.f deg2grid.f demod64a.f extract.f fil651.f fil652.f fil653.f flat1.f flat2.f flatten.f four2a.f ftpeak65.f gen65.f getpfx1.f getpfx2.f getsnr.f graycode.f grid2deg.f grid2k.f indexx.f interleave63.f k2grid.f limit.f lpf1.f nchar.f packcall.f packdxcc.f packgrid.f packmsg.f packtext.f pctile.f peakup.f pix2d.f ps.f set.f setup65.f short65.f slope.f smooth.f spec2d65.f symsync65.f sync65.f unpackcall.f unpackgrid.f unpackmsg.f unpacktext.f wsjt1.f wsjt65.f xcor.f xfft.f sort.f ssort.f chkhist.f version.f wisdom.f cqz65.f cqz4.f msync65.f sync24.f xcor24.f ps24.f decode24.f msync24.f genmet.f interleave24.f gen24.f entail.f morse.f gencwid.f
+gcc -O2 -fpic -c igray.c init_rs.c encode_rs.c decode_rs.c wrapkarn.c cutil.c tab.c fano.c
+gcc -shared -o libJT65.so *.o -lgfortran -lfftw3f
+sudo cp libJT65.so /usr/local/lib
+sudo ldconfig
+
+For Linux you will need to have gfortran, fftw3 and portaudio installed.
