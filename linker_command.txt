@@ -16,6 +16,10 @@ gcc -shared -mrtd -o jt65.dll cutil.o wisdom.o nchar.o grid2deg.o packmsg.o pack
 
 This updates to latest fftw 3.3.3 and MinGW 4.7.2 - NOTE switch to GFortran on Windows - previously it was not workable, that was then ;)  Step one to multi-core testing of FFTW done.  And I'm already seeing a huge speed bump with update to 3.3.3 since it takes advantage of things my Intel i7 has that the older version didn't know about.
 
+Question answered.  Using threaded FFT to parallel process the JT65 decode FFT is a bust.  If anything it's a touch slower than non-threaded.  But - I suspected it might be since it doesn't really fit the model for a process that would gain.  Good news is - it's still faster in non-threaded mode than older FFTW3 version.
+
+---
+
 WARNING - libwsjt V5 IS NOT compatible with old versions of JT65-HF so don't waste your time - it no longer contains routines JT65-HF 1.x depends upon - all possible routines that can be implemented more efficiently/easily outside this library have been removed.
 
 -----
