@@ -17,10 +17,10 @@ C     mr2prob  probability that mr2sym was the transmitted value
 
 C      implicit real*8 (a-h,o-z)
       implicit none
-      real*4 signal(64,63)
+      real*4 signal(64,63),s1
       real*8 fs(64)
       real*8 afc,ave,scale,fsum,s2,sum,p1,p2,afac,x
-      integer i,i1,i2,j,nadd,nlow,ntest,s1
+      integer i,i1,i2,j,nadd,nlow,ntest
       integer mrsym(63),mrprob(63),mr2sym(63),mr2prob(63)
       integer mrs(63), mrs2(63)
 C      common/tmp9/ mrs(63),mrs2(63)
